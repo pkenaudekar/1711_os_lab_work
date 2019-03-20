@@ -1,0 +1,34 @@
+/*Author: Pratik Kenaudekar
+Date Created: 28th March 2018
+Date Modified: 28th March 2018
+Program: WAP to use alarm
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <utime.h>
+#include <sys/wait.h>
+#include <sys/times.h>
+#include <signal.h>
+
+void sig_handler(int signo)
+{
+	if(signo==SIGALRM)
+		printf("alarm\n");
+	exit(0);
+}
+
+void main()
+{
+	
+	alarm(4);
+	signal(SIGALRM, sig_handler);
+	sleep(20);
+}
+
